@@ -1,0 +1,45 @@
+{
+  "name": "react-native-logging",
+  "version": "0.0.1",
+  "description": "Simple logging for React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megahertz/react-native-logging.git"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "keywords": [
+    "logging",
+    "react-native",
+    "server",
+    "websockets",
+    "gui"
+  ],
+  "author": "Alexey Prokhorov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/megahertz/react-native-logging/issues"
+  },
+  "homepage": "https://github.com/megahertz/react-native-logging#readme",
+  "jest": {
+    "globals": {
+      "__DEV__": true,
+      "fetch": true
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-import-resolver-node": "^0.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "jest": "*",
+    "rewire": "^2.5.2"
+  }
+}
