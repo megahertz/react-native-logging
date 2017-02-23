@@ -64,8 +64,9 @@ transportLogS.active = __DEV__;
 transportLogS.client = {
   name: 'react-native-log-s'
 };
+transportLogS.depth = 6;
 transportLogS.level = 'silly';
-transportLogS.depth = 3;
+transportLogS.url = null;
 
 function log(level) {
   const data = [].slice.call(arguments, 1);
