@@ -66,6 +66,7 @@ transportLogS.client = {
 };
 transportLogS.depth = 6;
 transportLogS.level = 'silly';
+transportLogS.logNetworkError = false;
 transportLogS.url = null;
 
 function log(level) {
@@ -120,6 +121,7 @@ function transportLogS(msg) {
     method: 'POST'
   })
     .catch((e) => {
+      if (!transportLogS.logNetworkError) return;
       transportConsole({ level: 'warn', data: [e], date: new Date() });
     })
 }
