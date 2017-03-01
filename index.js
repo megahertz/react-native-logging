@@ -57,15 +57,11 @@ module.exports = {
   silly:   log.bind(null, 'silly')
 };
 
-transportConsole.active = true;
 transportConsole.level = 'silly';
 
-transportLogS.active = __DEV__;
-transportLogS.client = {
-  name: 'react-native-log-s'
-};
+transportLogS.client = { name: 'react-native-log-s' };
 transportLogS.depth = 6;
-transportLogS.level = 'silly';
+transportLogS.level = __DEV__ ? 'silly' : false;
 transportLogS.logNetworkError = false;
 transportLogS.url = null;
 
@@ -74,11 +70,11 @@ function log(level) {
   const msg = {
     level: level,
     data: data,
-    date: new Date()
+    date: new Date().getTime()
   };
 
   each(transports, (transport) => {
-    if (typeof transport !== 'function' || !transport.active) {
+    if (typeof transport !== 'function' || !transport.level) {
     return;
   }
   if (!compareLevels(transport.level, level)) {
@@ -140,7 +136,7 @@ function jsonDepth(json, depth) {
   if (typeof json === 'object') {
     const newJson = {};
     for (const i in json) {
-      if (!json.hasOwnProperty(i)) continue;
+      //noinspection JSUnfilteredForInLoop
       newJson[i] = jsonDepth(json[i], depth - 1);
     }
     return newJson;
@@ -150,7 +146,7 @@ function jsonDepth(json, depth) {
 }
 function each(object, callback) {
   for (const i in object) {
-    if (!object.hasOwnProperty(i)) continue;
+    //noinspection JSUnfilteredForInLoop
     callback(object[i], i);
   }
 }
