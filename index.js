@@ -132,6 +132,14 @@ function jsonDepth(json, depth) {
   if (Array.isArray(json)) {
     return json.map(child => jsonDepth(child, depth - 1));
   }
+  
+  if (json && typeof json.getMonth === 'function') {
+    return json; 
+  }
+  
+  if (json === null) {
+    return null;
+  }
 
   if (typeof json === 'object') {
     const newJson = {};

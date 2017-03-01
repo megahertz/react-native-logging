@@ -46,5 +46,14 @@ describe('react-native-logging', () => {
       const cropped = jsonDepth(array, 2);
       expect(cropped).toEqual(['first', ['first', '[array]']]);
     });
+    
+    it('should pass a date', () => {
+      const date = new Date();
+      expect(jsonDepth({ date }, 2)).toEqual({ date });
+    });
+    
+    it('should pass null', () => {
+      expect(jsonDepth({ n: null }, 2)).toEqual({ n: null });
+    });
   });
 });
