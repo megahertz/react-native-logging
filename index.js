@@ -77,9 +77,11 @@ function log(level) {
     if (typeof transport !== 'function' || !transport.level) {
     return;
   }
+
   if (!compareLevels(transport.level, level)) {
     return;
   }
+
   transport(msg);
 });
 }
@@ -90,6 +92,7 @@ function compareLevels(passLevel, checkLevel) {
   if (check === -1 || pass === -1) {
     return true;
   }
+
   return check <= pass;
 }
 
@@ -142,11 +145,16 @@ function jsonDepth(json, depth) {
   }
 
   if (typeof json === 'object') {
+    if (typeof json.toJSON === 'function') {
+      json = json.toJSON();
+    }
+
     const newJson = {};
     for (const i in json) {
       //noinspection JSUnfilteredForInLoop
       newJson[i] = jsonDepth(json[i], depth - 1);
     }
+
     return newJson;
   }
 
